@@ -3,14 +3,14 @@ name: Deploy Azure Function App
 on:
   push:
     branches:
-      - main  # deploy whenever you push to main branch
+      - main  # deploy on push to main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout your code
+      # 1. Checkout code
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -28,7 +28,7 @@ jobs:
       - name: Run tests
         run: npm test || echo "No tests defined"
 
-      # 5. Deploy to Azure Functions using publish profile
+      # 5. Deploy using Zip Deploy
       - name: Deploy to Azure Function App
         uses: azure/webapps-deploy@v2
         with:
